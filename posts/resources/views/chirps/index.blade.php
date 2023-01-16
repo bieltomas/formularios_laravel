@@ -8,6 +8,8 @@
             <label for="title" class="block text-sm font-medium text-gray-700">{{ __('Titulo de la publicación') }}</label>
             <textarea
                 name="title"
+                cols="100"
+                rows="1"
                 placeholder="{{ __('Ingresa aquí el titulo de la publicación') }}"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('title') }}</textarea>
@@ -24,10 +26,25 @@
             <label for="message" class="block text-sm font-medium text-gray-700">{{ __('Contenido de la publicación') }}</label>
             <textarea
                 name="message"
+                cols="100"
+                rows="10"
                 placeholder="{{ __('Ingresa el contenido completo de la publicación') }}"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('message') }}</textarea>
             <x-input-error :messages="$errors->get('message')" class="mt-2" /> 
+            <br>
+            <label>Caducable </label>
+            <input type="checkbox" name="caducable" value="1">
+            <br>
+            <label>Comentable </label>
+            <input type="checkbox" name="comentable" value="1">
+            <br>
+            <br>
+            <select>
+                <option value="1">Publico</option>
+                <option value="2">Privado</option>
+            </select>
+            <br>
             <x-primary-button class="mt-4">{{ __('Publicar') }}</x-primary-button>
         </form>
 
