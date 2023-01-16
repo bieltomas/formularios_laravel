@@ -1,5 +1,8 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <h1>POSTS</h1>
+        <p> Crear publicación</p>
+        <br>
         <form method="POST" action="{{ route('chirps.store') }}">
             @csrf
             <label for="title" class="block text-sm font-medium text-gray-700">{{ __('Titulo de la publicación') }}</label>
@@ -8,15 +11,15 @@
                 placeholder="{{ __('Ingresa aquí el titulo de la publicación') }}"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('title') }}</textarea>
-            <x-input-error :title="$errors->get('title')" class="mt-2" />
+            <x-input-error :messages="$errors->get('title')" class="mt-2" />
             <br>
             <label for="extract" class="block text-sm font-medium text-gray-700">{{ __('Extracto publicación') }}</label>
             <textarea
                 name="extract"
                 placeholder="{{ __('Ingresa un extracto de la publicación') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm cols=100 rows=5"
             >{{ old('extract') }}</textarea>
-            <x-input-error :extract="$errors->get('extract')" class="mt-2" />
+            <x-input-error :messages="$errors->get('extract')" class="mt-2" />
             <br>
             <label for="message" class="block text-sm font-medium text-gray-700">{{ __('Contenido de la publicación') }}</label>
             <textarea
@@ -67,8 +70,13 @@
                                 </x-dropdown>
                             @endif
                         </div>
-                        <h2 class="mt-2 text-xl font-semibold text-gray-800">{{ $chirp->title }}</h2>
+                        <h2> Titulo de la publicación </h2>
+                        <p class="mt-2 text-xl font-semibold text-gray-800">{{ $chirp->title }}</p>
+                        <br>
+                        <h2> Extracto de la publicación </h2>
                         <p class="mt-2 text-gray-600">{{ $chirp->extract }}</p>
+                        <br>
+                        <h2> Contenido de la publicación </h2>
                         <p class="mt-4 text-lg text-gray-900">{{ $chirp->message }}</p>
                     </div>
                 </div>

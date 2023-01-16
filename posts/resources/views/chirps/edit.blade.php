@@ -7,13 +7,13 @@
                 name="title"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('title', $chirp->title) }}</textarea>
-            <x-input-error :titles="$errors->get('title')" class="mt-2" />
+            <x-input-error :messages="$errors->get('title')" class="mt-2" />
             <br>
             <textarea
                 name="extract"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('extract', $chirp->extract) }}</textarea>
-            <x-input-error :extracts="$errors->get('extract')" class="mt-2" />
+            <x-input-error :messages="$errors->get('extract')" class="mt-2" />
             <br>
             <textarea
                 name="message"

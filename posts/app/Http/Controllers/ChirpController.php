@@ -86,6 +86,8 @@ class ChirpController extends Controller
         $this->authorize('update', $chirp);
  
         $validated = $request->validate([
+            'title' => 'required|string|max:55',
+            'extract' => 'required|string|max:55',
             'message' => 'required|string|max:255',
         ]);
  
