@@ -33,4 +33,8 @@ Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
+Route::resource('comments', ChirpController::class)
+    ->only(['index','store', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
     require __DIR__.'/auth.php';

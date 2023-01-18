@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Chirp extends Model
+class Comentario extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'extract',
+        'user_id',
+        'chirp_id',
         'message',
-        'comentable',
-        'caducable',
-        'visibilitat',
     ];
 
     public function user()
@@ -23,8 +20,9 @@ class Chirp extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comentarios()
+    public function chirp()
     {
-        return $this->hasMany(Comentario::class);
+        return $this->belongsTo(Chirp::class);
     }
+
 }

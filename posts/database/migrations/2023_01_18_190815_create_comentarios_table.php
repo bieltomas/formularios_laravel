@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('chirps', function (Blueprint $table) {
-            $table->string('title');
-            $table->string('extract');
-            $table->boolean('comentable');
-            $table->boolean('caducable');
-            $table->boolean('visibilitat');
+        Schema::create('comentarios', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('comentarios');
     }
 };

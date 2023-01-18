@@ -14,6 +14,15 @@ class ChirpController extends Controller
      */
     public function index()
     {
+        foreach (Chirp::all() as $chirp) {
+            if ($chirp->caducable == 1) {
+                $a = $chirp->created_at;
+                $a = $a->diffInSeconds(now());
+                if ($a >= 10) {
+                    $chirp->delete();
+                }
+            }
+        }
         return view('chirps.index', [
             'chirps' => Chirp::with('user')->latest()->get(),
         ]);
@@ -37,11 +46,38 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
+        $comentable = $request->input('comentable');
+        if ($comentable == 1) {
+            $request->request->add(['comentable' => true]);
+        } else {
+            $request->request->add(['comentable' => false]);
+        }
+
+        $caducable = $request->input('caducable');
+        if ($caducable == 1) {
+            $request->request->add(['caducable' => true]);
+        } else {
+            $request->request->add(['caducable' => false]);
+        }
+
+        $visibilitat = $request->input('visibilitat');
+        if($visibilitat == 1){
+            $request->request->add(['visibilitat' => true]);
+        } else {
+            $request->request->add(['visibilitat' => false]);
+        }
+
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'extract' => 'required|string|max:255',
             'message' => 'required|string|max:255',
+            'comentable' => 'required',
+            'caducable' => 'required',
+            'visibilitat' => 'required',
         ]);
+
+        
  
         $request->user()->chirps()->create($validated);
  
@@ -89,7 +125,11 @@ class ChirpController extends Controller
             'title' => 'required|string|max:55',
             'extract' => 'required|string|max:55',
             'message' => 'required|string|max:255',
+            'comentable' => 'required',
+            'caducable' => 'required',
+            'visibilitat' => 'required',
         ]);
+
  
         $chirp->update($validated);
  

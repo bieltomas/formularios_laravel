@@ -40,7 +40,7 @@
             <input type="checkbox" name="comentable" value="1">
             <br>
             <br>
-            <select>
+            <select name="visibilitat">
                 <option value="1">Publico</option>
                 <option value="2">Privado</option>
             </select>
