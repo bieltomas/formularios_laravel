@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chirp;
+use App\Models\Comentario;
 use Illuminate\Http\Request;
+
 
 class ChirpController extends Controller
 {
@@ -92,7 +94,10 @@ class ChirpController extends Controller
      */
     public function show(Chirp $chirp)
     {
-        //
+        return view('comments.index', [
+            'comments' => Comentario::with('user')->latest()->get(),
+            'chirp' => $chirp
+        ]);
     }
 
     /**

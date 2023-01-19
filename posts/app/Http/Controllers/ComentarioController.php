@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentario;
 use Illuminate\Http\Request;
+use App\Models\Chirp;
 
 class ComentarioController extends Controller
 {
@@ -12,9 +13,9 @@ class ComentarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($chirp)
     {
-        
+       
     }
 
     /**
@@ -35,7 +36,13 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        return view('chirps.comments');
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+ 
+        $request->user()->comments()->create($validated);
+ 
+        return redirect(route('chirps.comments'));
     }
 
     /**

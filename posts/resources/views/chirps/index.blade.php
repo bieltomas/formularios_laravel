@@ -95,8 +95,14 @@
                         <br>
                         <h2> Contenido de la publicación </h2>
                         <p class="mt-4 text-lg text-gray-900">{{ $chirp->message }}</p>
+                        <br>
+                        @if ($chirp->comentable == 1)
+                            <x-dropdown-link :href="route('chirps.show', $chirp)">
+                                {{ __('Comentar') }}
+                            </x-dropdown-link>
+                        @endif
+                        </div>
                     </div>
-                </div>
             @endforeach
         </div>
     </div>
