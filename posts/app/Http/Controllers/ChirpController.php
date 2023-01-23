@@ -16,6 +16,7 @@ class ChirpController extends Controller
      */
     public function index()
     {
+        ## Programado para que los posts caducables se borren cada 10 segundos (se puede cambiar)
         foreach (Chirp::all() as $chirp) {
             if ($chirp->caducable == 1) {
                 $a = $chirp->created_at;
@@ -130,9 +131,6 @@ class ChirpController extends Controller
             'title' => 'required|string|max:55',
             'extract' => 'required|string|max:55',
             'message' => 'required|string|max:255',
-            'comentable' => 'required',
-            'caducable' => 'required',
-            'visibilitat' => 'required',
         ]);
 
  

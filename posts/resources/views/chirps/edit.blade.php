@@ -3,18 +3,21 @@
         <form method="POST" action="{{ route('chirps.update', $chirp) }}">
             @csrf
             @method('patch')
+            <label for="title" class="block text-sm font-medium text-gray-700">{{ __('Titulo de la publicación') }}</label>
             <textarea
                 name="title"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('title', $chirp->title) }}</textarea>
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
             <br>
+            <label for="extract" class="block text-sm font-medium text-gray-700">{{ __('Extracto de la publicación') }}</label>
             <textarea
                 name="extract"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('extract', $chirp->extract) }}</textarea>
             <x-input-error :messages="$errors->get('extract')" class="mt-2" />
             <br>
+            <label for="message" class="block text-sm font-medium text-gray-700">{{ __('Mensaje de la publicación') }}</label>
             <textarea
                 name="message"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"

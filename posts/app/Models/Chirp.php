@@ -16,6 +16,7 @@ class Chirp extends Model
         'comentable',
         'caducable',
         'visibilitat',
+        
     ];
 
     public function user()
